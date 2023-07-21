@@ -2,26 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.ant-carousel .slick-dots-bottom {
+  bottom: 1.5rem;
+}
+/* .slick-dots {
+  padding-top: 1rem;
+}
+.slick-dots > li {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.685);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.slick-dots > li.slick-active {
+  background-color: black;
 }
+
+.slick-dots > li.slick-active > button {
+  display: none;
+} */

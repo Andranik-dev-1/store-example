@@ -10,7 +10,7 @@ body,
 /* For modern browsers */
 
 body {
-  /* touch-action: manipulation; */
+  touch-action: pan-x pan-y;
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }

@@ -10,10 +10,9 @@ body,
 /* For modern browsers */
 
 body {
-  touch-action: manipulation;
+  /* touch-action: manipulation; */
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
-  touch-action: none;
 }
 
 /* Hide the scrollbar for WebKit-based browsers (e.g., Chrome, Safari) */

@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  height: 100%;
+}
+/* For modern browsers */
+
+body {
+  touch-action: manipulation;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+/* Hide the scrollbar for WebKit-based browsers (e.g., Chrome, Safari) */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Disable dragging */
+html {
+  overflow-y: hidden;
+}
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* mihat check ara es incha vabshe ???? */
+/* Optional: Prevent double-tap zoom on some iOS devices */
+/* Add your specific rules for mobile devices with 1:1 aspect ratio */
+/* @media (max-aspect-ratio: 1/1) {
+
+  body {
+    touch-action: pan-x pan-y;
+  }
+} */
+
+.ant-carousel .slick-dots-bottom {
+  bottom: 1.5rem;
+}
+/* .slick-dots {
+  padding-top: 1rem;
+}
+.slick-dots > li {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.685);
+}
+
+.slick-dots > li.slick-active {
+  background-color: black;
+}
+
+.slick-dots > li.slick-active > button {
+  display: none;
+} */

@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 
 import Container from "@/components/ui/container";
 import useCart from "@/hooks/use-cart";
-
 import Summary from "./components/summary";
 import CartItem from "./components/cart-item";
 
 export const revalidate = 0;
 
-const CartPage = () => {
+export default function CardPage() {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
 
@@ -34,7 +33,7 @@ const CartPage = () => {
               )}
               <ul>
                 {cart.items.map((item) => (
-                  <CartItem key={item.id} data={item} />
+                  <CartItem key={item._id} data={item} />
                 ))}
               </ul>
             </div>
@@ -44,6 +43,4 @@ const CartPage = () => {
       </Container>
     </div>
   );
-};
-
-export default CartPage;
+}

@@ -26,7 +26,6 @@ interface CategoryPageProps {
 }
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
-
   const products = await getProducts({
     categoryId: params.categoryId,
     colorId: searchParams.colorId,
@@ -35,7 +34,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const sizes = await getSizes();
   const colors = await getColors();
   const category = await getCategory(params.categoryId);
-  
+
   return (
     <div className="bg-white">
       <Container>
@@ -49,9 +48,9 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
               {products.length === 0 && <NoResults />}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {products.map((item) => (
-                  <ProductCard key={item.id} data={item} />
+                  <ProductCard key={item._id} data={item} />
                 ))}
               </div>
             </div>

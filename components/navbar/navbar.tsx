@@ -1,8 +1,8 @@
-import Link from "next/link";
+import Link from 'next-intl/link';
 
-import MainNav from "@/components/main-nav";
+import MainNav from "@/components/navbar/main-nav";
 import Container from "@/components/ui/container";
-import NavbarActions from "@/components/navbar-actions";
+import NavbarActions from "@/components/navbar/navbar-actions";
 import getCategories from "@/actions/get-categories";
 
 export const revalidate = 0

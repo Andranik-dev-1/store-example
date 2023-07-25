@@ -1,11 +1,32 @@
 import { Product } from "@/types";
+import { client } from "@/lib/sanity/client";
 
-const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
+const getProduct = async (productId: string): Promise<Product> => {
+  const products = await client.fetch(
+    `*[_type == "product" && _id == $productId]{
+    _id,
+    name,
+    price,
+    "images": images[].asset->url,
+    category->{   
+      _id,
+      name,
+    },
+    size->{
+      name,
+      value
+    },
+    color->{
+      name,
+      value
+    },
+    isFeatured
+  }
+`,
+    { productId }
+  );
 
-const getProduct = async (id: string): Promise<Product> => {
-  const res = await fetch(`${URL}/${id}`);
-
-  return res.json();
+  return products[0]
 };
 
 export default getProduct;

@@ -1,11 +1,13 @@
 import { Color } from "@/types";
-
-const URL = `${process.env.NEXT_PUBLIC_API_URL}/colors`;
+import { client } from "@/lib/sanity/client";
 
 const getColors = async (): Promise<Color[]> => {
-  const res = await fetch(URL);
-
-  return res.json();
+  return await client.fetch(`*[_type == "color"]{
+    _id,
+    name,
+    value
+  }
+`);
 };
 
 export default getColors;

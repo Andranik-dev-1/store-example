@@ -1,27 +1,46 @@
 "use client";
 
 import Image from "next/image";
-import { MouseEventHandler } from "react";
-import { Expand, ShoppingCart } from "lucide-react";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { Expand, Heart, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
+import {FaHeart} from 'react-icons/fa'
 
 import Currency from "@/components/ui/currency";
 import IconButton from "@/components/ui/icon-button";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
+import useCarousel from "@/hooks/use-carousel";
+import useLikedStore from "@/hooks/use-liked";
+import Skeleton from "./skeleton";
 
 interface ProductCard {
   data: Product;
 }
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
+  const [mounted, setMounted] = useState(false)
   const previewModal = usePreviewModal();
-  const cart = useCart();
+  const addItem = useCart(state => state.addItem);
+  const toggleLikedItem = useLikedStore((state) => state.toggleItem)
+  const LikedItems = useLikedStore((state) => state.items)
   const router = useRouter();
+  const isSwiping = useCarousel((state) => state.isSwiping);
+
+
+  const existingItem = LikedItems.find((item) => item._id === data._id);
+  let heartIcon 
+  if(existingItem) {
+    heartIcon = <FaHeart className="text-xl text-red-600"/>
+  } else {
+    heartIcon = <Heart size={20} className="text-gray-600" />
+  }
 
   const handleClick = () => {
-    router.push(`/product/${data?.id}`);
+    if (!isSwiping) {
+      router.push(`/product/${data?._id}`);
+    }
   };
 
   const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -33,8 +52,21 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
 
-    cart.addItem(data);
+    addItem(data);
   };
+
+  const onAddToLiked: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    toggleLikedItem(data)
+  }
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if(!mounted){
+    return <Skeleton/>
+  }
 
   return (
     <div
@@ -43,8 +75,9 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     >
       {/* Image & actions */}
       <div className="aspect-square rounded-xl bg-gray-100 relative">
+  
         <Image
-          src={data.images?.[0]?.url}
+          src={data.images?.[0]}
           alt="image"
           fill
           className="aspect-square object-cover rounded-md"
@@ -58,6 +91,10 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             <IconButton
               onClick={onAddToCart}
               icon={<ShoppingCart size={20} className="text-gray-600" />}
+            />
+            <IconButton
+              onClick={onAddToLiked}
+              icon={heartIcon}
             />
           </div>
         </div>

@@ -5,7 +5,6 @@ interface BillboardProps {
 }
 
 const Billboard = ({ data }: BillboardProps) => {
-  console.log('dataa', data)
   return (
     <div className="p-3 sm:p-4 lg:p-7 rounded-xl overflow-hidden bg-white/50">
       <div

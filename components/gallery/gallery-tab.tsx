@@ -2,10 +2,10 @@ import Image from "next/image";
 import { Tab } from "@headlessui/react";
 
 import { cn } from "@/lib/utils";
-import { Image as ImageType } from "@/types";
+
 
 interface GalleryTabProps {
-  image: ImageType;
+  image: string;
 }
 
 const GalleryTab = ({ image }: GalleryTabProps) => {
@@ -16,8 +16,8 @@ const GalleryTab = ({ image }: GalleryTabProps) => {
           <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden rounded-md">
             <Image
               fill
-              src={image.url}
-              alt=""
+              src={image}
+              alt="image"
               className="object-cover object-center"
             />
           </span>

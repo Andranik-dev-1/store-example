@@ -1,11 +1,15 @@
 import { Billboard } from "@/types";
+import { client } from "@/lib/sanity/client";
 
-const URL=`${process.env.NEXT_PUBLIC_API_URL}/billboards`;
+const getBillboards = async (): Promise<Billboard[]> => {
 
-const getBillboards = async (): Promise<Billboard> => {
-  const res = await fetch(URL); 
-
-  return res.json();
+  return await client.fetch(`*[_type == "billboard"]{
+    _id,
+    label,
+    'imageUrl': imageUrl.asset->url
+  }
+`);
 };
 
 export default getBillboards;
+

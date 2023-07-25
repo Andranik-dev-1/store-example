@@ -14,6 +14,7 @@ interface InfoProps {
 
 const Info: React.FC<InfoProps> = ({ data }) => {
   const cart = useCart();
+console.log(data, 'dataaaaaa');
 
   const onAddToCart = () => {
     cart.addItem(data);
